@@ -18,4 +18,15 @@ public class AreaTests {
         assertEquals(expectedArea, actualArea);
     }
 
+    @Test
+    void toFindPerimeterOfRectangle() throws ExceptionToHandleNegativeValues {
+        //arrange
+        int expectedArea = 18;
+
+        //act
+        int actualArea = geometry.perimeterOfRectangle(4,5);
+
+        //assert
+        assertEquals(expectedArea, actualArea);
+    }
 }
