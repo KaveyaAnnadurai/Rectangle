@@ -1,71 +1,100 @@
 package com.m2p;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static com.m2p.Rectangle.createSquare;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
-    Rectangle rectangleObject = new Rectangle();
-    @Test
-    void toFindAreaOfRectangle() {
-        //arrange
-        int expectedArea = 20;
+    Rectangle rectangleObjectForPositiveValues = new Rectangle(4,5);
+    Rectangle rectangleObjectForNegativeValues =  new Rectangle( -4,5);
 
-        //act
-        int actualArea = rectangleObject.areaOfRectangle(4,5);
+    Rectangle squareObjectForPositiveValues = createSquare(3);
 
-        //assert
-        assertEquals(expectedArea, actualArea);
+    Rectangle squareObjectForNegativeValues = createSquare(-3);
+    @Nested
+    class RectangleOperations {
+        @Test
+        void toFindAreaOfRectangle() {
+            //arrange
+            int expectedArea = 20;
+
+            //act
+            int actualArea = rectangleObjectForPositiveValues.areaOfRectangle();
+
+            //assert
+            assertEquals(expectedArea, actualArea);
+        }
+
+        @Test
+        void toThrowExceptionInAreaWhenValuesAreNegative() {
+            assertThrows(IllegalArgumentException.class, () -> {
+                rectangleObjectForNegativeValues.areaOfRectangle();
+            });
+        }
+
+        @Test
+        void toFindPerimeterOfRectangle() {
+            //arrange
+            int expectedPerimeter = 18;
+
+            //act
+            int actualPerimeter = rectangleObjectForPositiveValues.perimeterOfRectangle();
+
+            //assert
+            assertEquals(expectedPerimeter, actualPerimeter);
+        }
+
+        @Test
+        void toThrowExceptionInPerimeterWhenValuesAreNegative() {
+            assertThrows(IllegalArgumentException.class, () -> {
+                rectangleObjectForNegativeValues.perimeterOfRectangle();
+            });
+        }
     }
-    @Test
-    void toThrowExceptionInAreaWhenValuesAreNegative(){
-        assertThrows(IllegalArgumentException.class, () ->{
-            rectangleObject.areaOfRectangle(-3,-4);
-        });
+    @Nested
+    class SquareOperations{
+
+        @Test
+        void  toFindAreaOfSquare(){
+            //arrange
+            int expectedAreaOfSquare = 9;
+
+            //act
+            int actualAreaOfSquare = squareObjectForPositiveValues.areaOfRectangle();
+
+            //assert
+            assertEquals(expectedAreaOfSquare, actualAreaOfSquare);
+        }
+
+        @Test
+        void toThrowExceptionInAreaOfSquareWhenValuesAreNegative() {
+            assertThrows(IllegalArgumentException.class, () -> {
+                squareObjectForNegativeValues.areaOfRectangle();
+            });
+        }
+
+
+        @Test
+        void toFindPerimeterOfSquare(){
+            //arrange
+            int expectedPerimeterOfSquare = 12;
+
+            //act
+            int actualPerimeterOfSquare = squareObjectForPositiveValues.perimeterOfRectangle();
+
+            //assert
+            assertEquals(expectedPerimeterOfSquare, actualPerimeterOfSquare);
+        }
+
+        @Test
+        void toThrowExceptionInPerimeterOfSquareWhenValuesAreNegative() {
+            assertThrows(IllegalArgumentException.class, () -> {
+                squareObjectForNegativeValues.perimeterOfRectangle();
+            });
+        }
     }
-
-    @Test
-    void toFindPerimeterOfRectangle(){
-        //arrange
-        int expectedPerimeter = 18;
-
-        //act
-        int actualPerimeter = rectangleObject.perimeterOfRectangle(4,5);
-
-        //assert
-        assertEquals(expectedPerimeter, actualPerimeter);
-    }
-    @Test
-    void toThrowExceptionInPerimeterWhenValuesAreNegative(){
-        assertThrows(IllegalArgumentException.class, () ->{
-            rectangleObject.areaOfRectangle(-3,4);
-        });
-    }
-
-    @Test
-    void toFindAreaOfSquare(){
-        //arrange
-        int expectedArea = 100;
-
-        //act
-        int actualArea = rectangleObject.areaOfSquare(10);
-
-        //assert
-        assertEquals(expectedArea, actualArea);
-    }
-
-    @Test
-    void toFindPerimeterOfSquare(){
-        //arrange
-        int expectedPerimeterOfSquare = 40;
-
-        //act
-        int actualPerimeterOfSquare = rectangleObject.perimeterOfSquare(10);
-
-        //assert
-        assertEquals(expectedPerimeterOfSquare, actualPerimeterOfSquare);
-    }
-
 
 }
