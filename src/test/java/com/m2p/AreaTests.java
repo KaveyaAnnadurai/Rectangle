@@ -6,6 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AreaTests {
     Geometry geometry = new Geometry();
+    @Test
+    void toFindAreaOfRectangle() throws ExceptionToHandleNegativeValues {
+        //arrange
+        int expectedArea = 20;
 
+        //act
+        int actualArea = geometry.areaOfRectangle(4,5);
+
+        //assert
+        assertEquals(expectedArea, actualArea);
+    }
 
 }
